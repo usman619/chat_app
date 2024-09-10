@@ -1,10 +1,19 @@
+import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/login_page.dart';
 import 'package:chat_app/pages/register_page.dart';
-import 'package:chat_app/themes/dark_mode.dart';
+import 'package:chat_app/pages/settings_page.dart';
+import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => ThemeProvider()),
+    ], child: const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,10 +24,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat App',
       debugShowCheckedModeBanner: false,
-      theme: darkMode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
+        '/home': (context) => const HomePage(),
+        '/settings': (context) => const SettingsPage(),
       },
       home: const LoginPage(),
     );

@@ -68,6 +68,7 @@ flutter:
   assets:
     - assets/icon/dark_app_icon.png
     - assets/icon/light_app_icon.png
+    - assets/images/speech_bubble.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

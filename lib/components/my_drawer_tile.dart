@@ -17,7 +17,9 @@ class MyDrawerTile extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: drawerTextTheme,
+        style: drawerTextTheme.copyWith(
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
       leading: Icon(
         icon,

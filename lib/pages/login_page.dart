@@ -31,15 +31,19 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Image(
-                    image: AssetImage('assets/icon/light_app_icon.png'),
-                    height: 200,
-                    width: 200,
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  Image(
+                    image: const AssetImage('assets/images/speech_bubble.png'),
+                    height: 100,
+                    width: 100,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 70,
                   ),
                   MyTextField(
                     controller: emailController,
@@ -72,7 +76,10 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
                   MyButton(
                     text: 'Login',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, '/home');
+                    },
                   ),
                   const SizedBox(height: 20),
                   Align(
@@ -89,9 +96,12 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(width: 5),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/register');
+                          },
                           child: Text(
-                            'Register Here.',
+                            'Register',
                             style: bodyTextTheme.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,

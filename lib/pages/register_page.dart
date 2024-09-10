@@ -34,10 +34,19 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 20,
+                    height: 50,
+                  ),
+                  Image(
+                    image: const AssetImage('assets/images/speech_bubble.png'),
+                    height: 100,
+                    width: 100,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  const SizedBox(
+                    height: 50,
                   ),
                   MyTextField(
                     controller: nameController,
@@ -80,7 +89,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(width: 5),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(context, '/login');
+                          },
                           child: Text(
                             'Login',
                             style: bodyTextTheme.copyWith(

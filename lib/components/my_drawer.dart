@@ -15,14 +15,15 @@ class MyDrawer extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 50.0),
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  size: 72,
+                child: Image(
+                  image: const AssetImage('assets/images/speech_bubble.png'),
+                  height: 72,
+                  width: 72,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
               Divider(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               const SizedBox(height: 10),
               MyDrawerTile(
@@ -35,7 +36,18 @@ class MyDrawer extends StatelessWidget {
               MyDrawerTile(
                 title: 'SETTINGS',
                 icon: Icons.settings_outlined,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/settings');
+                },
+              ),
+              const Spacer(),
+              MyDrawerTile(
+                title: 'LOGOUT',
+                icon: Icons.logout_outlined,
+                onTap: () {
+                  Navigator.popAndPushNamed(context, '/login');
+                },
               ),
             ],
           ),
