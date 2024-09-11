@@ -29,3 +29,11 @@ TextStyle loginTextTheme(BuildContext context) => TextStyle(
       fontSize: 24,
       color: Theme.of(context).colorScheme.primary,
     );
+
+TextStyle textFieldTheme(context) => TextStyle(
+      fontFamily: GoogleFonts.firaCode().fontFamily,
+      fontWeight: FontWeight.normal,
+      fontSize: 15,
+      letterSpacing: 2,
+      color: Theme.of(context).colorScheme.inversePrimary,
+    );

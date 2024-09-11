@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         foregroundColor: Theme.of(context).colorScheme.primary,
       ),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
     );
   }
 }

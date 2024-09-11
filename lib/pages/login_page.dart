@@ -1,24 +1,43 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_password_field.dart';
 import 'package:chat_app/components/my_text_field.dart';
 import 'package:chat_app/themes/text_theme.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  final void Function()? onTap;
+  LoginPage({super.key, required this.onTap});
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  void login(BuildContext context) async {
+    final authService = AuthService();
+
+    try {
+      await authService.signInWithEmailPassword(
+        _emailController.text,
+        _passwordController.text,
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            e.toString(),
+            style: bodyTextTheme,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             'Login',
@@ -46,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 70,
                   ),
                   MyTextField(
-                    controller: emailController,
+                    controller: _emailController,
                     labelText: "Enter your email",
                     obscureText: false,
                   ),
@@ -54,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 20,
                   ),
                   MyPasswordField(
-                    controller: passwordController,
+                    controller: _passwordController,
                     labelText: "Enter your password",
                   ),
                   const SizedBox(
@@ -76,10 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
                   MyButton(
                     text: 'Login',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamed(context, '/home');
-                    },
+                    onTap: () => login(context),
                   ),
                   const SizedBox(height: 20),
                   Align(
@@ -96,10 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(width: 5),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, '/register');
-                          },
+                          onTap: onTap,
                           child: Text(
                             'Register',
                             style: bodyTextTheme.copyWith(

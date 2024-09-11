@@ -1,8 +1,19 @@
+import 'package:chat_app/auth/auth_gate.dart';
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_drawer_tile.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  MyDrawer({super.key});
+
+  final _auth = AuthService();
+
+  void logout(BuildContext context) async {
+    await _auth.logout();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const AuthGate()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +56,7 @@ class MyDrawer extends StatelessWidget {
               MyDrawerTile(
                 title: 'LOGOUT',
                 icon: Icons.logout_outlined,
-                onTap: () {
-                  Navigator.popAndPushNamed(context, '/login');
-                },
+                onTap: () => logout(context),
               ),
             ],
           ),

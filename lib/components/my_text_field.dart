@@ -31,9 +31,7 @@ class MyTextField extends StatelessWidget {
         fillColor: Theme.of(context).colorScheme.secondary,
         filled: true,
         label: Text(labelText),
-        labelStyle: bodyTextTheme.copyWith(
-          fontSize: 15,
-        ),
+        labelStyle: textFieldTheme(context),
       ),
     );
   }

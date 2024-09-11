@@ -1,26 +1,55 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_password_field.dart';
 import 'package:chat_app/components/my_text_field.dart';
 import 'package:chat_app/themes/text_theme.dart';
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class RegisterPage extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordtroller = TextEditingController();
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
+  final void Function()? onTap;
 
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordtroller = TextEditingController();
+  RegisterPage({super.key, required this.onTap});
+
+  // Register New User
+  void register(BuildContext context) async {
+    final authService = AuthService();
+    if (_passwordController.text == _confirmPasswordtroller.text) {
+      try {
+        await authService.signUpWithEmailPassword(
+            _emailController.text, _passwordController.text);
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              e.toString(),
+              style: titleTextTheme,
+            ),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            "Passwords doesn't Match!",
+            style: titleTextTheme,
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             'Register',
@@ -48,31 +77,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 50,
                   ),
-                  MyTextField(
-                    controller: nameController,
-                    labelText: 'Enter your name',
-                    obscureText: false,
-                  ),
                   const SizedBox(height: 20),
                   MyTextField(
-                    controller: emailController,
+                    controller: _emailController,
                     labelText: 'Enter your email',
                     obscureText: false,
                   ),
                   const SizedBox(height: 20),
                   MyPasswordField(
-                    controller: passwordController,
+                    controller: _passwordController,
                     labelText: 'Enter your password',
                   ),
                   const SizedBox(height: 20),
                   MyPasswordField(
-                    controller: confirmPasswordtroller,
+                    controller: _confirmPasswordtroller,
                     labelText: 'Confirm your password',
                   ),
                   const SizedBox(height: 20),
                   MyButton(
                     text: 'Register',
-                    onTap: () {},
+                    onTap: () => register(context),
                   ),
                   const SizedBox(height: 20),
                   Align(
@@ -81,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Have an Account?',
+                          'Already have an Account?',
                           style: bodyTextTheme.copyWith(
                             fontSize: 14,
                             color: Theme.of(context).colorScheme.primary,
@@ -89,10 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(width: 5),
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, '/login');
-                          },
+                          onTap: onTap,
                           child: Text(
                             'Login',
                             style: bodyTextTheme.copyWith(

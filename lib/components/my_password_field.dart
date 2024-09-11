@@ -44,9 +44,7 @@ class _AppPasswordFieldState extends State<MyPasswordField> {
         fillColor: Theme.of(context).colorScheme.secondary,
         filled: true,
         label: Text(widget.labelText),
-        labelStyle: bodyTextTheme.copyWith(
-          fontSize: 15,
-        ),
+        labelStyle: textFieldTheme(context),
         suffixIcon: IconButton(
           onPressed: () {
             setState(() {
