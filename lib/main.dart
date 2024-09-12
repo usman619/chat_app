@@ -1,4 +1,4 @@
-import 'package:chat_app/auth/auth_gate.dart';
+import 'package:chat_app/services/auth/auth_gate.dart';
 import 'package:chat_app/firebase_options.dart';
 import 'package:chat_app/pages/home_page.dart';
 import 'package:chat_app/pages/settings_page.dart';
@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => ThemeProvider()),
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
       routes: {
-        '/home': (context) => const HomePage(),
+        '/home': (context) => HomePage(),
         '/settings': (context) => const SettingsPage(),
       },
       home: const AuthGate(),

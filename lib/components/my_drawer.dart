@@ -1,5 +1,5 @@
-import 'package:chat_app/auth/auth_gate.dart';
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_gate.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_drawer_tile.dart';
 import 'package:flutter/material.dart';
 

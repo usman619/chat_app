@@ -1,4 +1,4 @@
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/components/my_button.dart';
 import 'package:chat_app/components/my_password_field.dart';
 import 'package:chat_app/components/my_text_field.dart';
@@ -49,7 +49,6 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(
             'Register',
@@ -61,71 +60,74 @@ class RegisterPage extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Image(
-                    image: const AssetImage('assets/images/speech_bubble.png'),
-                    height: 100,
-                    width: 100,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  const SizedBox(height: 20),
-                  MyTextField(
-                    controller: _emailController,
-                    labelText: 'Enter your email',
-                    obscureText: false,
-                  ),
-                  const SizedBox(height: 20),
-                  MyPasswordField(
-                    controller: _passwordController,
-                    labelText: 'Enter your password',
-                  ),
-                  const SizedBox(height: 20),
-                  MyPasswordField(
-                    controller: _confirmPasswordtroller,
-                    labelText: 'Confirm your password',
-                  ),
-                  const SizedBox(height: 20),
-                  MyButton(
-                    text: 'Register',
-                    onTap: () => register(context),
-                  ),
-                  const SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an Account?',
-                          style: bodyTextTheme.copyWith(
-                            fontSize: 14,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                        GestureDetector(
-                          onTap: onTap,
-                          child: Text(
-                            'Login',
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Image(
+                      image:
+                          const AssetImage('assets/images/speech_bubble.png'),
+                      height: 100,
+                      width: 100,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    const SizedBox(height: 20),
+                    MyTextField(
+                      controller: _emailController,
+                      labelText: 'Enter your email',
+                      obscureText: false,
+                    ),
+                    const SizedBox(height: 20),
+                    MyPasswordField(
+                      controller: _passwordController,
+                      labelText: 'Enter your password',
+                    ),
+                    const SizedBox(height: 20),
+                    MyPasswordField(
+                      controller: _confirmPasswordtroller,
+                      labelText: 'Confirm your password',
+                    ),
+                    const SizedBox(height: 20),
+                    MyButton(
+                      text: 'Register',
+                      onTap: () => register(context),
+                    ),
+                    const SizedBox(height: 20),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Already have an Account?',
                             style: bodyTextTheme.copyWith(
                               fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
+                          const SizedBox(width: 5),
+                          GestureDetector(
+                            onTap: onTap,
+                            child: Text(
+                              'Login',
+                              style: bodyTextTheme.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
