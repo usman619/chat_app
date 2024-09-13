@@ -30,7 +30,8 @@ class _AppPasswordFieldState extends State<MyPasswordField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.controller,
-      obscureText: _obscureText, // Use the local state _obscureText here
+      obscureText: _obscureText,
+      style: textFieldTheme(context),
       decoration: InputDecoration(
         focusColor: Theme.of(context).colorScheme.primary,
         focusedBorder: OutlineInputBorder(
