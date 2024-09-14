@@ -24,7 +24,9 @@ class MySettingsTile extends StatelessWidget {
         children: [
           Text(
             title,
-            style: bodyTextTheme,
+            style: bodyTextTheme.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
           action,
         ],

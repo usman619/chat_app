@@ -36,6 +36,18 @@ class SettingsPage extends StatelessWidget {
               },
             ),
           ),
+          // Block Users
+          MySettingsTile(
+            title: 'Block Users',
+            action: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.arrow_forward_ios,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
         ],
       ),
     );

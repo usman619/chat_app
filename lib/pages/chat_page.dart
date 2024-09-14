@@ -155,6 +155,9 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           ChatBubble(
             message: data['message'],
+            messageId: doc.id,
+            userId: data['senderID'],
+            timestamp: data['timestamp'],
             isCurrentUser: isCurrentUser,
           )
         ],
@@ -180,8 +183,11 @@ class _ChatPageState extends State<ChatPage> {
           ),
           child: IconButton(
             onPressed: sendMessage,
-            icon: Icon(Icons.arrow_upward,
-                color: Theme.of(context).colorScheme.secondary),
+            icon: Icon(
+              Icons.send_rounded,
+              size: 30,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
           ),
         ),
         const SizedBox(
