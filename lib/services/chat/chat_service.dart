@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
     - Report [Done]
     - Block Users [Done]
     - Unblock User [Done]
-    - get block users stream []
+    - get block users stream [Done]
 */
 class ChatService extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

@@ -178,9 +178,9 @@ class _ChatPageState extends State<ChatPage> {
         ),
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.inversePrimary,
-            shape: BoxShape.circle,
-          ),
+              color: Theme.of(context).colorScheme.inversePrimary,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(8)),
           child: IconButton(
             onPressed: sendMessage,
             icon: Icon(

@@ -134,6 +134,9 @@ class ChatBubble extends StatelessWidget {
           TextButton(
             onPressed: () {
               ChatService().blockUser(userId);
+              // goto chat
+              Navigator.pop(context);
+              // goto Home
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -168,16 +171,16 @@ class ChatBubble extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 4),
         decoration: BoxDecoration(
-            color: isCurrentUser ? Colors.green.shade600 : Colors.grey.shade600,
+            color: isCurrentUser ? Colors.green.shade400 : Colors.white,
             borderRadius: BorderRadius.circular(12)),
         child: Stack(
           children: [
             Column(
               children: [
                 Text(
-                  message,
+                  '$message\t\t\t',
                   style: textFieldTheme(context).copyWith(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 // Adding a blank line space
@@ -190,7 +193,7 @@ class ChatBubble extends StatelessWidget {
               child: Text(
                 timestampToTime(timestamp),
                 style: textFieldTheme(context)
-                    .copyWith(color: Colors.white, fontSize: 12),
+                    .copyWith(color: Colors.black, fontSize: 12),
               ),
             ),
           ],

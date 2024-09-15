@@ -1,4 +1,5 @@
 import 'package:chat_app/components/my_settings_tile.dart';
+import 'package:chat_app/pages/blocked_users_page.dart';
 import 'package:chat_app/themes/text_theme.dart';
 import 'package:chat_app/themes/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,9 +39,14 @@ class SettingsPage extends StatelessWidget {
           ),
           // Block Users
           MySettingsTile(
-            title: 'Block Users',
+            title: 'Blocked Users',
             action: IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlockedUsersPage(),
+                ),
+              ),
               icon: Icon(
                 Icons.arrow_forward_ios,
                 color: Theme.of(context).colorScheme.primary,
